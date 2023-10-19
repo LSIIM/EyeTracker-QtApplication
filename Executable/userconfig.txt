@@ -1,0 +1,10 @@
+-showprocess s
+-drawbb s
+-drawir s
+-drawpu s
+-drawpp s
+-drawmp s
+-drawgz s
+-multicore n
+-overwrite s
+-showwarn s
