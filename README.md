@@ -2,6 +2,7 @@
 Windows Only
 
 Requisitos para Executável
+
 -pipenv 3.9
 -pipenv
 
