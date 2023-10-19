@@ -10,6 +10,5 @@ Ambiente Pipenv ser configurado manualmente dentro da pasta tracker, basta abrir
 pipenv install
 
 Requisitos para usar o Código:
-OpenCV 4.5 ou superior
-QTcreator
+OpenCV 4.5 ou superior e QTcreator
 
