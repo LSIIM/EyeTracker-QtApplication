@@ -1,4 +1,4 @@
-show_process n
+show_process s
 draw_bb s
 draw_iris s
 draw_pupil s
