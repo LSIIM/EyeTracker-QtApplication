@@ -1,4 +1,4 @@
--showprocess n
+-showprocess s
 -drawbb s
 -drawir s
 -drawpu s

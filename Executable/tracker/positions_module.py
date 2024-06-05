@@ -53,9 +53,18 @@ class PositionsModule():
             'right_pupil_y': [ data._right_pupil['y'] if data._right_pupil is not None else "" for data in self._data],
             'right_pupil_r': [ data._right_pupil['r'] if data._right_pupil is not None else "" for data in self._data],
 
-            'gaze_x': [ data._gaze['x'] if data._gaze is not None else "" for data in self._data],
-            'gaze_y': [ data._gaze['y'] if data._gaze is not None else "" for data in self._data],
-            'gaze_z': [ data._gaze['z'] if data._gaze is not None else "" for data in self._data],
+            'head_orientation_x': [ data._head_orientation['x'] if data._head_orientation is not None else "" for data in self._data],
+            'head_orientation_y': [ data._head_orientation['y'] if data._head_orientation is not None else "" for data in self._data],
+            'head_orientation_z': [ data._head_orientation['z'] if data._head_orientation is not None else "" for data in self._data],
+
+            'left_eye_gaze_x': [ data._left_eye_gaze['x'] if data._left_eye_gaze is not None else "" for data in self._data],
+            'left_eye_gaze_y': [ data._left_eye_gaze['y'] if data._left_eye_gaze is not None else "" for data in self._data],
+
+            'right_eye_gaze_x': [ data._right_eye_gaze['x'] if data._right_eye_gaze is not None else "" for data in self._data],
+            'right_eye_gaze_y': [ data._right_eye_gaze['y'] if data._right_eye_gaze is not None else "" for data in self._data],
+
+            'nose_tip_x': [ data._nose_tip['x'] if data._nose_tip is not None else "" for data in self._data],
+            'nose_tip_y': [ data._nose_tip['y'] if data._nose_tip is not None else "" for data in self._data],
         }
 
        
@@ -69,10 +78,13 @@ class FaceDataModule():
         self._right_iris = None
         self._left_pupil = None
         self._right_pupil = None
-        self._gaze = None
+        self._head_orientation = None
+        self._left_eye_gaze = None
+        self._right_eye_gaze = None
         self._frame = frame
         self._height = height
         self._width = width
+        self._nose_tip = None
     def print_data(self):
         print(f'\nFrame: {self._frame}')
         print("\nLeft Iris:")
@@ -85,19 +97,55 @@ class FaceDataModule():
         print(self._right_pupil)
         print("\n-------------------------------------")
 
-    def add_gaze_data(self, data):
+    def add_nose_tip_data(self, data):
+        if(data is not None):
+            x,y = data
+            self._nose_tip = {
+                "x": int(x),
+                "y": int(y)
+            }
+        else:
+            self._nose_tip = {
+                "x": None,
+                "y": None
+            }
+
+    def add_head_orientation_data(self, data):
         if(data is not None):
             x,y,z = data
-            self._gaze = {
+            self._head_orientation = {
                 "x": x,
                 "y": y,
                 "z": z
             }
         else:
-            self._gaze = {
+            self._head_orientation = {
                 "x": None,
                 "y": None,
                 "z": None
+            }
+    
+    def add_eyes_gaze_data(self, left_gaze, right_gaze):
+        if (left_gaze is not None):
+            self._left_eye_gaze = {
+                "x": left_gaze[0],
+                "y": left_gaze[1]
+            }
+        else:
+            self._left_eye_gaze = {
+                "x": None,
+                "y": None
+            }
+        
+        if (right_gaze is not None):
+            self._right_eye_gaze = {
+                "x": right_gaze[0],
+                "y": right_gaze[1]
+            }
+        else:
+            self._right_eye_gaze = {
+                "x": None,
+                "y": None
             }
 
     def add_position_data(self, data, key):
